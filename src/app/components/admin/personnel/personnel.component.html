@@ -1,33 +1,64 @@
-<app-navbar></app-navbar>
-
 <div>
-    <h2>Liste des personnels</h2>
-    <div *ngFor="let personnel of personnels">
-      <p>{{ personnel.nom }} {{ personnel.prenom }}</p>
-      <p>{{ personnel.mail }}</p>
-      <button (click)="deletePersonnel(personnel.id_pers)">Supprimer</button>
-    </div>
-    
-    <h2>Ajouter un personnel</h2>
-    <form [formGroup]="personnelForm" (ngSubmit)="addPersonnel()">
-      <label for="nom">Nom :</label>
-      <input type="text" id="nom" formControlName="nom">
-      <label for="prenom">Prénom :</label>
-      <input type="text" id="prenom" formControlName="prenom">
-      <label for="contact">Contact :</label>
-      <input type="text" id="contact" formControlName="contact">
-      <label for="adresse">Adresse :</label>
-      <input type="text" id="adresse" formControlName="adresse">
-      <label for="mail">Email :</label>
-      <input type="email" id="mail" formControlName="mail">
-      <label for="pseudo_personnel">Pseudo :</label>
-      <input type="text" id="pseudo_personnel" formControlName="pseudo_personnel">
-      <label for="mdp_personnel">Mot de passe :</label>
-      <input type="password" id="mdp_personnel" formControlName="mdp_personnel">
-      <button type="submit">Ajouter</button>
+    <app-navbar></app-navbar>
+</div>
+<div>
+    <!-- Formulaire de mise à jour -->
+    <div *ngIf="selectedPersonnel">
+      <h2>Modifier le personnel</h2>
+      <form [formGroup]="personnelForm" (ngSubmit)="updatePersonnel(selectedPersonnel.id_pers)">
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" formControlName="nom">
+        <label for="prenom">Prénom :</label>
+        <input type="text" id="prenom" formControlName="prenom">
+        <label for="contact">Contact :</label>
+        <input type="text" id="contact" formControlName="contact">
+        <label for="adresse">Adresse :</label>
+        <input type="text" id="adresse" formControlName="adresse">
+        <label for="mail">Email :</label>
+        <input type="email" id="mail" formControlName="mail">
+        <label for="pseudo_personnel">Pseudo :</label>
+        <input type="text" id="pseudo_personnel" formControlName="pseudo_personnel">
+        <label for="mdp_personnel">Mot de passe :</label>
+        <input type="password" id="mdp_personnel" formControlName="mdp_personnel">
+        <button type="submit">Enregistrer les modifications</button>
+        <button type="button" (click)="resetForm()">Annuler</button>
     </form>
-    
-    <div *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</div>
-    <div *ngIf="successMessage" style="color: green;">{{ successMessage }}</div>
   </div>
   
+  <!-- Affichage des messages d'erreur et de succès -->
+  <div *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</div>
+  <div *ngIf="successMessage" style="color: green;">{{ successMessage }}</div>
+</div>
+
+<!-- Formulaire d'ajout de personnel -->
+<h2>Ajouter un personnel</h2>
+<form [formGroup]="addPersonnelForm" (ngSubmit)="addPersonnel()">
+  <label for="nom">Nom :</label>
+  <input type="text" id="nom" formControlName="nom">
+  <label for="prenom">Prénom :</label>
+  <input type="text" id="prenom" formControlName="prenom">
+  <label for="contact">Contact :</label>
+  <input type="text" id="contact" formControlName="contact">
+  <label for="adresse">Adresse :</label>
+  <input type="text" id="adresse" formControlName="adresse">
+  <label for="mail">Email :</label>
+  <input type="email" id="mail" formControlName="mail">
+  <label for="pseudo_personnel">Pseudo :</label>
+  <input type="text" id="pseudo_personnel" formControlName="pseudo_personnel">
+  <label for="mdp_personnel">Mot de passe :</label>
+  <input type="password" id="mdp_personnel" formControlName="mdp_personnel">
+  <button type="submit">Ajouter</button>
+</form>
+
+<!-- Affichage des personnels existants -->
+<div *ngFor="let personnel of personnels">
+  <p>Nom: {{ personnel.nom }}</p>
+  <p>Prénom: {{ personnel.prenom }}</p>
+  <p>Mail: {{ personnel.mail }}</p>
+  <p>Contact: {{ personnel.contact }}</p>
+  <p>Adresse: {{ personnel.adresse }}</p>
+  <p>Pseudo: {{ personnel.pseudo_personnel }}</p>
+  <!-- Bouton de mise à jour -->
+  <button (click)="selectPersonnel(personnel)">Modifier</button>
+  <button (click)="deletePersonnel(personnel.id_pers)">Supprimer</button>
+</div>

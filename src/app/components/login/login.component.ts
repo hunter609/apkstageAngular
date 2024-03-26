@@ -34,9 +34,8 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(pseudo, password, role).subscribe(
       (response) => {
-        // Authentification réussie
         localStorage.setItem('token', response.token);
-        this.redirectUser(); // Rediriger l'utilisateur après connexion
+        this.redirectUser(); // Redirigéna ledala
       },
       (error) => {
         this.errorMessage = error.error.error;

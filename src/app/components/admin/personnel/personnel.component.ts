@@ -1,30 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// Supprimez l'import de l'interface Personnel
-import { PersonnelService } from '../../../services/personnel/personnel.service'; 
+import { PersonnelService } from '../../../services/personnel/personnel.service';
+import { Personnel } from '../../../models/personnel.model';
+import { NavbarComponent } from '../navbar/navbar.component';
 
-// Définissez l'interface Personnel ici
-export interface Personnel {
-  id_pers: number;
-  nom: string;
-  prenom: string;
-  contact: string;
-  adresse: string;
-  pseudo_personnel: string;
-  mail: string;
-  mdp_personnel: string;
-}
 
 @Component({
   selector: 'app-personnel',
   templateUrl: './personnel.component.html',
-  styleUrls: ['./personnel.component.scss']
+  styleUrls: ['./personnel.component.scss'],
 })
 export class PersonnelComponent implements OnInit {
   personnels: Personnel[] = [];
   personnelForm: FormGroup;
+  addPersonnelForm: FormGroup; // Nouveau formulaire pour l'ajout
   errorMessage: string = '';
   successMessage: string = '';
+  selectedPersonnel: Personnel | null = null;
 
   constructor(private personnelService: PersonnelService, private fb: FormBuilder) {
     this.personnelForm = this.fb.group({
@@ -34,7 +26,17 @@ export class PersonnelComponent implements OnInit {
       adresse: ['', Validators.required],
       pseudo_personnel: ['', Validators.required],
       mail: ['', [Validators.required, Validators.email]],
-      mdp_personnel: ['', Validators.required]
+      mdp_personnel: ['', Validators.required],
+    });
+    // Nouveau formulaire pour l'ajout
+    this.addPersonnelForm = this.fb.group({
+      nom: ['', Validators.required],
+      prenom: ['', Validators.required],
+      contact: ['', Validators.required],
+      adresse: ['', Validators.required],
+      pseudo_personnel: ['', Validators.required],
+      mail: ['', [Validators.required, Validators.email]],
+      mdp_personnel: ['', Validators.required],
     });
   }
 
@@ -54,15 +56,60 @@ export class PersonnelComponent implements OnInit {
     );
   }
 
+  selectPersonnel(personnel: Personnel): void {
+    this.selectedPersonnel = personnel;
+    this.personnelForm.patchValue(personnel);
+  }
+
+  // Nouvelle méthode pour la mise à jour
+  updatePersonnel(id: number): void {
+    const updatedPersonnelData = this.getUpdatedPersonnelData();
+    this.personnelService.updatePersonnel(id, updatedPersonnelData).subscribe(
+      () => {
+        this.successMessage = 'Informations du personnel mises à jour avec succès';
+        const index = this.personnels.findIndex((p) => p.id_pers === id);
+        if (index !== -1) {
+          this.personnels[index] = {
+            ...this.personnels[index],
+            ...updatedPersonnelData,
+          };
+        }
+        this.selectedPersonnel = null;
+        this.personnelForm.reset();
+      },
+      (error: any) => {
+        console.error('Erreur lors de la mise à jour du personnel :', error);
+        this.errorMessage = 'Erreur lors de la mise à jour du personnel';
+      }
+    );
+  }
+
+  getUpdatedPersonnelData(): Partial<Personnel> {
+    const updatedData: Partial<Personnel> = {};
+
+    Object.keys(this.personnelForm.controls).forEach((key) => {
+      const control = this.personnelForm.controls[key];
+      if (control.dirty) {
+        updatedData[key as keyof Personnel] = control.value;
+      }
+    });
+
+    return updatedData;
+  }
+
+  resetForm(): void {
+    this.selectedPersonnel = null;
+    this.personnelForm.reset();
+  }
+
+  // Nouvelle méthode pour l'ajout
   addPersonnel(): void {
-    if (this.personnelForm.valid) {
-      const newPersonnel: Personnel = this.personnelForm.value;
-      this.personnelService.addPersonnel(newPersonnel).subscribe(
-        (id: number) => {
-          newPersonnel.id_pers = id;
-          this.successMessage = 'Nouveau personnel ajouté avec succès';
-          this.personnels.push(newPersonnel);
-          this.personnelForm.reset();
+    if (this.addPersonnelForm.valid) {
+      this.personnelService.addPersonnel(this.addPersonnelForm.value).subscribe(
+        () => {
+          this.successMessage = 'Personnel ajouté avec succès';
+          this.getPersonnels(); // Rafraîchir la liste après l'ajout
+          this.addPersonnelForm.reset();
         },
         (error: any) => {
           console.error('Erreur lors de l\'ajout du personnel :', error);
@@ -75,15 +122,17 @@ export class PersonnelComponent implements OnInit {
   }
 
   deletePersonnel(id: number): void {
-    this.personnelService.deletePersonnel(id).subscribe(
-      () => {
-        this.successMessage = 'Personnel supprimé avec succès';
-        this.personnels = this.personnels.filter(personnel => personnel.id_pers !== id);
-      },
-      (error: any) => {
-        console.error('Erreur lors de la suppression du personnel :', error);
-        this.errorMessage = 'Erreur lors de la suppression du personnel';
-      }
-    );
+    if (confirm('Êtes-vous sûr de vouloir supprimer ce personnel ?')) {
+      this.personnelService.deletePersonnel(id).subscribe(
+        () => {
+          this.successMessage = 'Personnel supprimé avec succès';
+          this.getPersonnels(); // Rafraîchir la liste après la suppression
+        },
+        (error: any) => {
+          console.error('Erreur lors de la suppression du personnel :', error);
+          this.errorMessage = 'Erreur lors de la suppression du personnel';
+        }
+      );
+    }
   }
 }

@@ -15,7 +15,8 @@ import { PersonnelComponent } from './components/admin/personnel/personnel.compo
 import { ClassificationComponent } from './components/admin/classification/classification.component';
 import { FilterBySectionPipe } from './pipes/filter-by-section.pipe';
 import { FilterByDivisionPipe } from './pipes/filter-by-division.pipe';
-import { AdminpageComponent } from './components/admin/adminpage/adminpage.component'; 
+import { AdminpageComponent } from './components/admin/adminpage/adminpage.component';
+import { EnregistrerEntrepriseComponent } from './components/personnel/enregistrer-entreprise/enregistrer-entreprise/enregistrer-entreprise.component'; 
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -40,7 +41,8 @@ const routes: Routes = [
     ClassificationComponent,
     FilterBySectionPipe,
     FilterByDivisionPipe,
-    AdminpageComponent
+    AdminpageComponent,
+    EnregistrerEntrepriseComponent
   ],
   imports: [
     BrowserModule,
