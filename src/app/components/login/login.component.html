@@ -1,0 +1,34 @@
+<!-- login.component.html -->
+
+<div class="login-container">
+  <h2>Connexion</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    
+    <div class="form-group">
+      <label for="role">Rôle</label>
+      <select id="role" formControlName="role">
+        <option value="admin">Administrateur</option>
+        <option value="personnel">Personnel</option> 
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="pseudo">Pseudo</label>
+      <input type="text" id="pseudo" formControlName="pseudo">
+    </div>
+
+    <div class="form-group">
+      <label for="password">Mot de passe</label>
+      <div class="password-input">
+        <input type="{{ hidePassword ? 'password' : 'text' }}" id="password" formControlName="password">
+        <button type="button" (click)="togglePasswordVisibility()">
+          {{ hidePassword ? 'Afficher' : 'Masquer' }}
+        </button>
+      </div>
+    </div>
+    
+   
+    <button type="submit">Se connecter</button>
+    <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+  </form>
+</div>

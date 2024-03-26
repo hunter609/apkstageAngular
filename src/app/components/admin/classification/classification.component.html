@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+
+<div class="classification-container">
+  <h2>Classification des entreprises</h2>
+  <div class="filters">
+    <div class="filter">
+      <label for="sectionFilter">Filtrer par section :</label>
+      <select id="sectionFilter" [(ngModel)]="sectionFilter">
+        <option value="">Toutes les sections</option>
+        <option *ngFor="let section of sections" [value]="section.lib_section">{{ section.lib_section }}</option>
+      </select>
+      <button (click)="filterBySection('')">Effacer</button>
+    </div>
+    <div class="filter">
+      <label for="divisionFilter">Filtrer par division :</label>
+      <select id="divisionFilter" [(ngModel)]="divisionFilter">
+        <option value="">Toutes les divisions</option>
+        <option *ngFor="let division of divisions" [value]="division.lib_division">{{ division.lib_division }}</option>
+      </select>
+      <button (click)="filterByDivision('')">Effacer</button>
+    </div>
+  </div>
+  <div class="entreprise-list">
+    <ul>
+      <li *ngFor="let entreprise of entreprises | filterBySection:sectionFilter | filterByDivision:divisionFilter">
+        {{ entreprise.nom_entreprise }} - Section: {{ entreprise.section }} - Division: {{ entreprise.division }}
+      </li>
+    </ul>
+  </div>
+</div>
