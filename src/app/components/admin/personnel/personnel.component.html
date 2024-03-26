@@ -1,3 +1,33 @@
 <app-navbar></app-navbar>
 
-<p>personnel works!</p>
+<div>
+    <h2>Liste des personnels</h2>
+    <div *ngFor="let personnel of personnels">
+      <p>{{ personnel.nom }} {{ personnel.prenom }}</p>
+      <p>{{ personnel.mail }}</p>
+      <button (click)="deletePersonnel(personnel.id_pers)">Supprimer</button>
+    </div>
+    
+    <h2>Ajouter un personnel</h2>
+    <form [formGroup]="personnelForm" (ngSubmit)="addPersonnel()">
+      <label for="nom">Nom :</label>
+      <input type="text" id="nom" formControlName="nom">
+      <label for="prenom">Prénom :</label>
+      <input type="text" id="prenom" formControlName="prenom">
+      <label for="contact">Contact :</label>
+      <input type="text" id="contact" formControlName="contact">
+      <label for="adresse">Adresse :</label>
+      <input type="text" id="adresse" formControlName="adresse">
+      <label for="mail">Email :</label>
+      <input type="email" id="mail" formControlName="mail">
+      <label for="pseudo_personnel">Pseudo :</label>
+      <input type="text" id="pseudo_personnel" formControlName="pseudo_personnel">
+      <label for="mdp_personnel">Mot de passe :</label>
+      <input type="password" id="mdp_personnel" formControlName="mdp_personnel">
+      <button type="submit">Ajouter</button>
+    </form>
+    
+    <div *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</div>
+    <div *ngIf="successMessage" style="color: green;">{{ successMessage }}</div>
+  </div>
+  
