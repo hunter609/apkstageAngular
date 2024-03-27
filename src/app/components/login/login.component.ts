@@ -23,7 +23,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.authService.isLoggedIn()) {
-      this.redirectUser();
+      const role = localStorage.getItem('role'); 
+      if (role) { 
+        this.redirectUser(role);
+      }
     }
   }
 
@@ -35,7 +38,8 @@ export class LoginComponent implements OnInit {
     this.authService.login(pseudo, password, role).subscribe(
       (response) => {
         localStorage.setItem('token', response.token);
-        this.redirectUser(); // Redirigéna ledala
+        localStorage.setItem('role', role);
+        this.redirectUser(role); 
       },
       (error) => {
         this.errorMessage = error.error.error;
@@ -43,21 +47,21 @@ export class LoginComponent implements OnInit {
     );
   }
 
+  private redirectUser(role: string): void {
+    if (role === 'personnel') {
+      this.router.navigate(['/enregistrer-entreprise']); 
+    } else {
+      this.router.navigate(['/dashboard']); 
+    }
+  }
+
   logout(): void {
     this.authService.logout();
-    this.router.navigate(['/login']); // Rediriger vers la page de connexion après déconnexion
+    this.router.navigate(['/login']); 
   }
 
   togglePasswordVisibility(): void {
     this.hidePassword = !this.hidePassword; 
   }
 
-  private redirectUser(): void {
-    const role = this.loginForm.get('role')!.value;
-    if (role === 'personnel') {
-      this.router.navigate(['/enregistrer-entreprise']);
-    } else {
-      this.router.navigate(['/dashboard']);
-    }
-  }
 }

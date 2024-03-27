@@ -1,5 +1,3 @@
-// Dans auth.service.ts
-
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap, Observable } from 'rxjs';
@@ -20,11 +18,22 @@ export class AuthService {
       .pipe(
         tap(response => {
           localStorage.setItem('token', response.token);
+          localStorage.setItem('role', role);
+          const redirectUrl = localStorage.getItem('redirectUrl');
+          if (redirectUrl) {
+            localStorage.removeItem('redirectUrl');
+            window.location.href = redirectUrl;
+          }
         })
       );
   }
 
   logout(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('role'); 
+  }
+
+  getRole(): string | null {
+    return localStorage.getItem('role');
   }
 }

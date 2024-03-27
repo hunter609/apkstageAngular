@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  isCollapsed: boolean = true;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -16,8 +17,11 @@ export class NavbarComponent implements OnInit {
 
   logout(): void {
     console.log('Logout function called');
-    localStorage.removeItem('token');
+    this.authService.logout();
     this.router.navigate(['/login']);
   }
 
+  toggleNavbar(): void {
+    this.isCollapsed = !this.isCollapsed;
+  }
 }
