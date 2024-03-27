@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       pseudo: ['', Validators.required],
       password: ['', Validators.required],
-      role: ['admin', Validators.required]
+      role: ['personnel', Validators.required]
     });
   }
 
@@ -54,10 +54,10 @@ export class LoginComponent implements OnInit {
 
   private redirectUser(): void {
     const role = this.loginForm.get('role')!.value;
-    if (role === 'admin') {
-      this.router.navigate(['/dashboard']);
-    } else {
+    if (role === 'personnel') {
       this.router.navigate(['/enregistrer-entreprise']);
+    } else {
+      this.router.navigate(['/dashboard']);
     }
   }
 }

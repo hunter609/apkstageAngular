@@ -27,6 +27,7 @@ const routes: Routes = [
   { path: 'personnels', component: PersonnelComponent, canActivate:[AuthGuard] },
   { path: 'classification', component: ClassificationComponent, canActivate:[AuthGuard] },
   { path: 'nomenclature', component: NomenclatureComponent, canActivate:[AuthGuard] },
+  { path: 'enregistrer-entreprise', component: EnregistrerEntrepriseComponent, canActivate:[AuthGuard] },
 ];
 
 @NgModule({

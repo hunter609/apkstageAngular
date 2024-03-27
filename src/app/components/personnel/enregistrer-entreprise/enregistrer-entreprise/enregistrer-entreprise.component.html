@@ -1,1 +1,74 @@
-<p>enregistrer-entreprise works!</p>
+<form [formGroup]="entrepriseForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="nom_entreprise">Nom de l'entreprise :</label>
+      <input type="text" id="nom_entreprise" formControlName="nom_entreprise">
+    </div>
+    <div>
+      <label for="nom_proprietaire">Nom du propriétaire :</label>
+      <input type="text" id="nom_proprietaire" formControlName="nom_proprietaire">
+    </div>
+    <div>
+      <label for="prenom_proprietaire">Prénom du propriétaire :</label>
+      <input type="text" id="prenom_proprietaire" formControlName="prenom_proprietaire">
+    </div>
+    <div>
+      <label for="activite">Activité :</label>
+      <input type="text" id="activite" formControlName="activite">
+    </div>
+    <div>
+      <label for="coor">Coordonnées :</label>
+      <input type="text" id="coor" formControlName="coor">
+    </div>
+    <div>
+      <label for="telephone">Téléphone :</label>
+      <input type="text" id="telephone" formControlName="telephone">
+    </div>
+    <div>
+      <label for="date_enregistrement">Date d'enregistrement :</label>
+      <input type="date" id="date_enregistrement" formControlName="date_enregistrement">
+    </div>
+    <div>
+      <label for="prenom_pers">Prénom du personnel :</label>
+      <input type="text" id="prenom_pers" formControlName="prenom_pers">
+    </div>
+    <div>
+      <label for="nbpers">Nombre de personnel :</label>
+      <input type="number" id="nbpers" formControlName="nbpers">
+    </div>
+    <div>
+      <label for="numIdFiscale">Numéro d'identification fiscale :</label>
+      <input type="text" id="numIdFiscale" formControlName="numIdFiscale">
+    </div>
+    <div>
+      <label for="numStat">Numéro de statistiques :</label>
+      <input type="text" id="numStat" formControlName="numStat">
+    </div>
+    <div>
+      <label for="section">Section :</label>
+      <input type="text" id="section" formControlName="section">
+    </div>
+    <div>
+      <label for="division">Division :</label>
+      <input type="text" id="division" formControlName="division">
+    </div>
+    <div>
+      <label for="groupe">Groupe :</label>
+      <input type="text" id="groupe" formControlName="groupe">
+    </div>
+    <div>
+      <label for="classe">Classe :</label>
+      <input type="text" id="classe" formControlName="classe">
+    </div>
+    <div>
+      <label for="categorie">Catégorie :</label>
+      <input type="text" id="categorie" formControlName="categorie">
+    </div>
+    <div>
+      <label for="sous_categorie">Sous-catégorie :</label>
+      <input type="text" id="sous_categorie" formControlName="sous_categorie">
+    </div>
+    <button type="submit">Enregistrer</button>
+  </form>
+
+  <button type="button" (click)="logout()">Se déconnecter</button>
+  

@@ -22,19 +22,17 @@ export class AdminService {
   }
 
   getAdmins(): Observable<any[]> {
-    // Utilisez les en-têtes avec le token dans la requête
+    // Mapiasa Token
     const headers = this.createAuthorizationHeader();
     return this.http.get<any[]>(`${this.apiUrl}/admins`, { headers });
   }
 
   addAdmin(admin: any): Observable<any> {
-    // Utilisez les en-têtes avec le token dans la requête
     const headers = this.createAuthorizationHeader();
     return this.http.post<any>(`${this.apiUrl}/admins`, admin, { headers });
   }
 
   deleteAdmin(id: number): Observable<void> {
-    // Utilisez les en-têtes avec le token dans la requête
     const headers = this.createAuthorizationHeader();
     return this.http.delete<void>(`${this.apiUrl}/admins/${id}`, { headers });
   }

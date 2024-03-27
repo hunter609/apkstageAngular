@@ -3,8 +3,7 @@
     <h2>Liste des administrateurs</h2>
   
     <div *ngFor="let admin of admins">
-      <p>{{ admin.nom }} {{ admin.prenom }}</p>
-      <p>{{ admin.email }}</p>
+      <p>{{ admin.nom }} {{ admin.prenom }} - {{ admin.mail }} {{admin.cin}} {{admin.contact}}</p>
       <button (click)="deleteAdmin(admin.id)">Supprimer</button>
     </div>
   

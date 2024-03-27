@@ -1,22 +1,22 @@
 <div>
-    <app-navbar></app-navbar>
+  <app-navbar></app-navbar>
 </div>
 <div>
-    <h2>Recherche de nomenclature par UUID</h2>
-    <form (ngSubmit)="fetchNomenclature()">
-      <label for="uuid">Entrez l'UUID de l'entreprise :</label>
-      <input type="text" id="uuid" name="uuid" [(ngModel)]="uuid" required>
-      <button type="submit">Afficher la nomenclature</button>
-    </form>
-    <div *ngIf="nomenclature">
-      <h3>Nomenclature de l'entreprise</h3>
-      <p>{{ nomenclature.nom_entreprise }}</p>
-      <p>{{ nomenclature.coordonnees }}</p>
-      <p>{{ nomenclature.telephone }}</p>
-      <p>{{ nomenclature.nomenclature }}</p>
-    </div>
-    <div *ngIf="errorMessage">
-      <p>Erreur : {{ errorMessage }}</p>
-    </div>
+  <h2>Recherche de nomenclature par UUID</h2>
+  <form (ngSubmit)="fetchNomenclature()">
+    <label for="uuid">Entrez l'UUID de l'entreprise :</label>
+    <input type="text" id="uuid" name="uuid" [(ngModel)]="uuid" required>
+    <button type="submit">Afficher la nomenclature</button>
+    <button type="button" (click)="resetForm()">Annuler</button>
+  </form>
+  <div *ngIf="nomenclature">
+    <h3>Nomenclature de l'entreprise</h3>
+    <p>{{ nomenclature.nom_entreprise }}</p>
+    <p>{{ nomenclature.coordonnees }}</p>
+    <p>{{ nomenclature.telephone }}</p>
+    <p>{{ nomenclature.nomenclature }}</p>
+  </div>
+  <div *ngIf="errorMessage">
+    <p>Erreur : {{ errorMessage }}</p>
+  </div>
 </div>
-  

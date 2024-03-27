@@ -26,4 +26,10 @@ export class NomenclatureComponent {
       }
     );
   }
+
+  resetForm(): void {
+    this.uuid = ''; 
+    this.nomenclature = null; 
+    this.errorMessage = ''; 
+  }
 }

@@ -1,6 +1,8 @@
+// Dans auth.service.ts
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { tap, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,12 @@ export class AuthService {
   }
 
   login(pseudo: string, password: string, role: string): Observable<any> {
-    return this.http.get<any>(`http://localhost:8080/existe${role}?pseudo=${pseudo}&password=${password}`);
+    return this.http.get<any>(`http://localhost:8080/existe${role}?pseudo=${pseudo}&password=${password}`)
+      .pipe(
+        tap(response => {
+          localStorage.setItem('token', response.token);
+        })
+      );
   }
 
   logout(): void {

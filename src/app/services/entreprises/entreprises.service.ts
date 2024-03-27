@@ -26,4 +26,13 @@ export class EntreprisesService {
     return this.http.get<any[]>(`${this.apiUrl}/division`);
   }
 
+  modifierEntreprise(entreprise: any): Observable<any> {
+    const uuid = entreprise.uuid;
+    return this.http.put<any>(`${this.apiUrl}/entreprises/${uuid}`, entreprise);
+  }
+
+  supprimerEntreprise(uuid: string): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/entreprises/${uuid}`);
+  }
+
 }
