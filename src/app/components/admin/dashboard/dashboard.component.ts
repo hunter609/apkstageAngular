@@ -3,6 +3,7 @@ import { DashboardService } from '../../../services/dashboard/dashboard.service'
 import { NavbarComponent } from '../navbar/navbar.component';
 import { Chart, registerables } from 'chart.js';
 import { trigger, transition, animate, style } from '@angular/animations';
+import { faChartLine } from '@fortawesome/free-solid-svg-icons';
 
 
 Chart.register(...registerables);
@@ -32,6 +33,7 @@ export class DashboardComponent implements AfterViewInit {
   loading: boolean = true;
   barChartRef: any;
   pieChartRef: any;
+  faChartLine = faChartLine;
 
   constructor(private dashboardService: DashboardService, private cdr: ChangeDetectorRef) {}
 

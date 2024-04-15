@@ -1,0 +1,175 @@
+// Variables pour les couleurs
+$primary-color: #4CAF50;
+$secondary-color: purple;
+$third-color: #979799;
+
+.entreprises {
+    margin-top: 50px;
+}
+// Styles pour la zone de recherche
+#rechercher {
+  display: block;
+  margin: 20px auto;
+  padding: 10px;
+  width: 80%;
+  max-width: 600px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1.2em;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+  &:focus {
+    outline: none;
+    background-color: #fff;
+  }
+}
+.tableauEntreprises{
+  zoom: 90% !important;
+  margin-left: 271px;
+  font-size: 17px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
+}
+// Styles pour la table
+table {
+  margin-left: 240px;
+  width: 50%;
+  border-collapse: collapse;
+  border-collapse: collapse;
+
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.274);
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  
+  thead {
+    position: sticky;
+    top: 0;
+    background-color: $primary-color;
+    color: #fff;
+  }
+
+
+  .table td, .table th {
+    border: 1px solid #ddd;
+    padding: 4px;
+    text-align: left;
+  }
+
+  .table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  th,
+  td {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+  }
+
+  th {
+    background-color: $primary-color;
+    color: #fff;
+  }
+
+  td {
+    background-color: #fff;
+    transition: background-color 0.3s ease;
+    max-width:140px !important;
+    word-wrap: break-word;
+
+    &:hover {
+      background-color: lighten($third-color, 20%);
+    }
+
+    input[type="text"] {
+      position: inherit;
+      width: 100%;
+      padding: 4px; 
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 0.95em;
+      background-color: #fff;
+      margin-right: 8px;
+  
+    }
+  }
+}
+
+// Styles pour les boutons
+button {
+  padding: 6px 12px;
+  margin-right: 6px; 
+  background-color: $secondary-color;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: darken($secondary-color, 10%);
+  }
+}
+
+// Styles pour les actions dans la dernière colonne
+.actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+#btnModifierEntreprise {
+  background-color: blue;
+
+  &:hover {
+    background-color: darken(blue, 20%);
+  }
+}
+
+#btnSuppEntreprise {
+  background-color: red;
+
+  &:hover {
+    background-color: darken(red, 10%);
+  }
+}
+/* Style pour le titre */
+.titre {
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+}
+
+  /* Style pour le message d'erreur */
+.error {
+  color: red;
+  font-size: 1.4em;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+  transform: translateX(400px);
+}
+.btnGenererPdf{
+  position: fixed;
+  top: 100px;
+  right: 40px;
+  padding: 10px 20px;
+  background-color: purple;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  }
+}

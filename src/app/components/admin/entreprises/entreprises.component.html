@@ -1,63 +1,94 @@
 <app-navbar></app-navbar>
-
-<div *ngFor="let entreprise of entreprises">
-    <p>{{entreprise.uuid}} - {{ entreprise.nom_entreprise }} - {{entreprise.nom_proprietaire}} - {{entreprise.prenom}} - {{entreprise.activite}}</p>
-    <button (click)="modifierEntreprise(entreprise)">Modifier</button>
-    <button (click)="supprimerEntreprise(entreprise.uuid)">Supprimer</button>
+<div class="entreprises">
+    <p class="titre">Listes des Entreprises</p>
+    <table *ngFor="let entreprise of entreprises" class="tableauEntreprises">
+        <thead>
+            <tr>
+                <th>UUID</th>
+                <th>Nom de l'entreprise</th>
+                <th>Nom du propriétaire</th>
+                <th>Prénom</th>
+                <th>Activité</th>
+                <th>Coordonnées</th>
+                <th>Téléphone</th>
+                <th>Date d'enregistrement</th>
+                <th>Ajoutée par</th>
+                <th>Nombre de personnes</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{entreprise.uuid}}</td>
+                <td>{{entreprise.nom_entreprise}}</td>
+                <td>{{entreprise.nom_proprietaire}}</td>
+                <td>{{entreprise.prenom}}</td>
+                <td>{{entreprise.activite}}</td>
+                <td>{{entreprise.coor}}</td>
+                <td>{{entreprise.telephone}}</td>
+                <td>{{entreprise.date_enregistrement}}</td>
+                <td>{{entreprise.prenom_pers}}</td>
+                <td>{{entreprise.nbpers}}</td>
+                <td>
+                    <button (click)="modifierEntreprise(entreprise)">Modifier</button>
+                    <button (click)="supprimerEntreprise(entreprise.uuid)">Supprimer</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div *ngIf="entrepriseAModifier">
+        <h2>Modifier Entreprise</h2>
+        <form (submit)="modifierEntrepriseSubmit()">
+            <label>Nom de l'entreprise:</label>
+            <input type="text" name="nom_entreprise" [(ngModel)]="entrepriseAModifier.nom_entreprise" required>
+    
+            <label>Nom du propriétaire:</label>
+            <input type="text" name="nom_proprietaire" [(ngModel)]="entrepriseAModifier.nom_proprietaire" required>
+    
+            <label>Prénom du propriétaire:</label>
+            <input type="text" name="prenom_proprietaire" [(ngModel)]="entrepriseAModifier.prenom_proprietaire" required>
+    
+            <label>Activité:</label>
+            <input type="text" name="activite" [(ngModel)]="entrepriseAModifier.activite" required>
+    
+            <label>Coordonnées:</label>
+            <input type="text" name="coor" [(ngModel)]="entrepriseAModifier.coor" required>
+    
+            <label>Téléphone:</label>
+            <input type="text" name="telephone" [(ngModel)]="entrepriseAModifier.telephone" required>
+    
+            <label>Prénom personnel:</label>
+            <input type="text" name="prenom_pers" [(ngModel)]="entrepriseAModifier.prenom_pers" required>
+    
+            <label>Nombre de personnes:</label>
+            <input type="number" name="nbpers" [(ngModel)]="entrepriseAModifier.nbpers" required>
+    
+            <label>Numéro d'identification fiscale:</label>
+            <input type="text" name="numIdFiscale" [(ngModel)]="entrepriseAModifier.numIdFiscale" required>
+    
+            <label>Numéro de statistique:</label>
+            <input type="text" name="numStat" [(ngModel)]="entrepriseAModifier.numStat" required>
+    
+            <label>Section:</label>
+            <input type="text" name="section" [(ngModel)]="entrepriseAModifier.section" required>
+    
+            <label>Division:</label>
+            <input type="text" name="division" [(ngModel)]="entrepriseAModifier.division" required>
+    
+            <label>Groupe:</label>
+            <input type="text" name="groupe" [(ngModel)]="entrepriseAModifier.groupe" required>
+    
+            <label>Classe:</label>
+            <input type="text" name="classe" [(ngModel)]="entrepriseAModifier.classe" required>
+    
+            <label>Catégorie:</label>
+            <input type="text" name="categorie" [(ngModel)]="entrepriseAModifier.categorie" required>
+    
+            <label>Sous-catégorie:</label>
+            <input type="text" name="sous_categorie" [(ngModel)]="entrepriseAModifier.sous_categorie" required>
+    
+            <button type="submit">Enregistrer</button>
+        </form>
+    </div>
 </div>
-<div *ngIf="entrepriseAModifier">
-    <h2>Modifier Entreprise</h2>
-    <form (submit)="modifierEntrepriseSubmit()">
-        <label>Nom de l'entreprise:</label>
-        <input type="text" name="nom_entreprise" [(ngModel)]="entrepriseAModifier.nom_entreprise" required>
 
-        <label>Nom du propriétaire:</label>
-        <input type="text" name="nom_proprietaire" [(ngModel)]="entrepriseAModifier.nom_proprietaire" required>
-
-        <label>Prénom du propriétaire:</label>
-        <input type="text" name="prenom_proprietaire" [(ngModel)]="entrepriseAModifier.prenom_proprietaire" required>
-
-        <label>Activité:</label>
-        <input type="text" name="activite" [(ngModel)]="entrepriseAModifier.activite" required>
-
-        <label>Coordonnées:</label>
-        <input type="text" name="coor" [(ngModel)]="entrepriseAModifier.coor" required>
-
-        <label>Téléphone:</label>
-        <input type="text" name="telephone" [(ngModel)]="entrepriseAModifier.telephone" required>
-
-        <label>Prénom personnel:</label>
-        <input type="text" name="prenom_pers" [(ngModel)]="entrepriseAModifier.prenom_pers" required>
-
-        <label>Nombre de personnes:</label>
-        <input type="number" name="nbpers" [(ngModel)]="entrepriseAModifier.nbpers" required>
-
-        <label>Numéro d'identification fiscale:</label>
-        <input type="text" name="numIdFiscale" [(ngModel)]="entrepriseAModifier.numIdFiscale" required>
-
-        <label>Numéro de statistique:</label>
-        <input type="text" name="numStat" [(ngModel)]="entrepriseAModifier.numStat" required>
-
-        <label>Section:</label>
-        <input type="text" name="section" [(ngModel)]="entrepriseAModifier.section" required>
-
-        <label>Division:</label>
-        <input type="text" name="division" [(ngModel)]="entrepriseAModifier.division" required>
-
-        <label>Groupe:</label>
-        <input type="text" name="groupe" [(ngModel)]="entrepriseAModifier.groupe" required>
-
-        <label>Classe:</label>
-        <input type="text" name="classe" [(ngModel)]="entrepriseAModifier.classe" required>
-
-        <label>Catégorie:</label>
-        <input type="text" name="categorie" [(ngModel)]="entrepriseAModifier.categorie" required>
-
-        <label>Sous-catégorie:</label>
-        <input type="text" name="sous_categorie" [(ngModel)]="entrepriseAModifier.sous_categorie" required>
-
-        <!-- Ajoutez d'autres champs de formulaire avec les valeurs pré-remplies selon vos besoins -->
-
-        <button type="submit">Enregistrer</button>
-    </form>
-</div>

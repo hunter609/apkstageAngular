@@ -141,4 +141,15 @@ $secondary-color: #6c757d;
       }
     }
   }
+  @media (max-width: 768px) {
+    .info-box {
+      padding: 40px;
+      zoom: 150% !important;
+    }
+    h2{
+        margin-left: 0px;
+    }
+
+    
+  }
 }

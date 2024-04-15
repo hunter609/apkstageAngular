@@ -2,7 +2,7 @@
 <div [@fadeInOut]>
   <div class="content">
     <div class="dashboard D3 plusInformations"> 
-      <h2>Statistiques</h2>
+      <h2>Statistiques <fa-icon [icon]="faChartLine" class="sidebar-icon"></fa-icon></h2>
       <div *ngIf="!loading" class="plusInformations">
         <p id='titre' class='info-box espace-repartition'>Nombre total d'entreprises : {{ statistiquesAffichees.entreprises }}</p>
         <p id='titre' class='info-box espace-repartition'>Nombre total de personnes : {{ statistiquesAffichees.totalPersonnes }}</p>
