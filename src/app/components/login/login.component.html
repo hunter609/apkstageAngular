@@ -1,32 +1,43 @@
-<div class="login-container">
-  <h2>Connexion</h2>
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    
-    <div class="form-group">
-      <label for="role">Rôle</label>
-      <select id="role" formControlName="role">
-        <option value="admin">Administrateur</option>
-        <option value="personnel">Personnel</option> 
-      </select>
+<div class="login-form-content">
+  <div class="login-form-container">
+    <div class="logo">
+      <img src="../../../assets/pic/Logo.png" alt="" srcset="" id="logo">
     </div>
-
-    <div class="form-group">
-      <label for="pseudo">Pseudo</label>
-      <input type="text" id="pseudo" formControlName="pseudo">
-    </div>
-
-    <div class="form-group">
-      <label for="password">Mot de passe</label>
-      <div class="password-input">
-        <input type="{{ hidePassword ? 'password' : 'text' }}" id="password" formControlName="password">
-        <button type="button" (click)="togglePasswordVisibility()">
-          {{ hidePassword ? 'Afficher' : 'Masquer' }}
-        </button>
-      </div>
-    </div>
-    
    
-    <button type="submit">Se connecter</button>
-    <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
-  </form>
+    <div class="UF">
+      <img src="../../../assets/pic/UF.png" alt="" srcset="" id="uf">
+    </div>
+    
+    <form [formGroup]="loginForm" class="login-form" (ngSubmit)="onSubmit()">
+      <h2>Connexion</h2>
+      <div class="form-group choisirRole">
+        <label for="role">Sélectionner un rôle</label>
+        <select id="role" formControlName="role">
+          <option value="admin">Administrateur</option>
+          <option value="personnel">Personnel</option> 
+        </select>
+      </div>
+  
+      <div class="form-group entrerPseudo">
+        <input type="text" id="pseudo" formControlName="pseudo" required="">
+        <label for="pseudo">Pseudo</label>
+      </div>
+  
+      <div class="form-group entrerMdp">
+        <input type="{{ hidePassword ? 'password' : 'text' }}" id="password" formControlName="password" required="">
+        <label for="password">Mot de passe</label>
+      </div>
+      
+      <button type="button" (click)="togglePasswordVisibility()">
+        {{ hidePassword ? 'Afficher' : 'Masquer' }}
+      </button>
+
+      <button type="submit">Se connecter</button>
+      
+      <div class="error-message" *ngIf="errorMessage">
+        {{ errorMessage }} 
+        <button (click)="closeErrorMessage()">Ok</button>
+      </div>
+    </form>
+  </div>
 </div>

@@ -64,4 +64,8 @@ export class LoginComponent implements OnInit {
     this.hidePassword = !this.hidePassword; 
   }
 
+  closeErrorMessage() {
+    this.errorMessage = ''; 
+  }
+
 }
