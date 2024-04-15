@@ -1,14 +1,15 @@
 .login-form-content {
-    body {
-        background: linear-gradient(to bottom right, #e6e5e5fa, #ffffff);
-
-    }
-
+    background: linear-gradient(to bottom right, #e6e5e5fa, #ffffff);
+    height: 100vh;
+    margin: -8px;
+    
+    
     .login-form-container {
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
+        
     }
 
     .login-form {

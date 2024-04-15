@@ -5,13 +5,14 @@
     background: url("../../../../../assets/pic/back.jpg");
     background-size: cover;
     background-position: center;
-
-
+    margin: -8px;
+   
     form {
         border: 1px black;
         border-radius: 30px;
         padding: 20px;
-        margin: 20px auto;
+        margin: 0 auto;
+        font-size: 1.3rem;
         max-width: 600px;
         text-align: center;
         margin-top: 60px;
@@ -184,9 +185,9 @@
         display: flex;
         justify-content: center;
         position: fixed;
-        top: 85px;
+        top: 95px;
         right: 100px;
-        left: 1080px;
+        left: 1060px;
     }
 
     .OCR {
