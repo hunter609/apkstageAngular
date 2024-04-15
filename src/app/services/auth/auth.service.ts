@@ -19,6 +19,7 @@ export class AuthService {
         tap(response => {
           localStorage.setItem('token', response.token);
           localStorage.setItem('role', role);
+          localStorage.setItem('prenom', response.prenom);
           const redirectUrl = localStorage.getItem('redirectUrl');
           if (redirectUrl) {
             localStorage.removeItem('redirectUrl');
@@ -31,6 +32,7 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('role'); 
+    localStorage.removeItem('prenom');
   }
 
   getRole(): string | null {

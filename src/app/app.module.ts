@@ -43,7 +43,7 @@ const routes: Routes = [
     FilterBySectionPipe,
     FilterByDivisionPipe,
     AdminpageComponent,
-    EnregistrerEntrepriseComponent
+    EnregistrerEntrepriseComponent,
   ],
   imports: [
     BrowserModule,

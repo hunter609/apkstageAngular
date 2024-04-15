@@ -11,6 +11,9 @@ import { Router } from '@angular/router';
 })
 export class EnregistrerEntrepriseComponent {
   entrepriseForm: FormGroup;
+  successMessage: string | null = null;
+  errorMessage: string | null = null;
+  prenom: string | null = null;
 
   constructor(private formBuilder: FormBuilder, 
               private http: HttpClient,
@@ -25,7 +28,7 @@ export class EnregistrerEntrepriseComponent {
       coor: ['', Validators.required],
       telephone: ['', Validators.required],
       date_enregistrement: ['', Validators.required],
-      prenom_pers: ['', Validators.required],
+      prenom_pers: [this.prenom, Validators.required],
       nbpers: ['', Validators.required],
       numIdFiscale: ['', Validators.required],
       numStat: ['', Validators.required],
@@ -36,6 +39,10 @@ export class EnregistrerEntrepriseComponent {
       categorie: ['', Validators.required],
       sous_categorie: ['', Validators.required]
     });
+  }
+
+  ngOnInit(): void {
+    this.prenom = localStorage.getItem('prenom');
   }
 
   onSubmit() {
@@ -56,7 +63,7 @@ export class EnregistrerEntrepriseComponent {
       this.http.post<any>('http://localhost:8080/enregistrer', this.entrepriseForm.value, httpOptions).subscribe(
         response => {
           console.log('Entreprise enregistrée avec succès!', response);
-          alert("Enregistrement réussi !");
+          this.successMessage = "Enregistrement réussi !";
           this.entrepriseForm.reset();
         },
         error => {
@@ -65,11 +72,17 @@ export class EnregistrerEntrepriseComponent {
         }
       );
     } else {
-      alert('Erreur');
+      this.errorMessage = "Veuillez remplir tout les champs !"
     }
   }
   logout(): void {
     this.authService.logout();
     this.router.navigate(['/login']); 
+  }
+  okSuccess(){
+    this.successMessage = null;
+  }
+  okError(){
+    this.errorMessage = null;
   }
 }
