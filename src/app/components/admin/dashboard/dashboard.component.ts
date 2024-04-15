@@ -2,13 +2,26 @@ import { Component, AfterViewInit, ViewChild, ElementRef, ChangeDetectorRef } fr
 import { DashboardService } from '../../../services/dashboard/dashboard.service';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { Chart, registerables } from 'chart.js';
+import { trigger, transition, animate, style } from '@angular/animations';
+
 
 Chart.register(...registerables);
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [
+        animate('300ms', style({ opacity: 0 })),
+      ])
+    ])
+  ]
 })
 export class DashboardComponent implements AfterViewInit {
   @ViewChild('barChart') barChart!: ElementRef;

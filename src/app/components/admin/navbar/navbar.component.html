@@ -1,35 +1,35 @@
-<nav class="navbar">
-  <div class="container">
-      <a class="navbar-brand">Page Admin</a>
-      <button class="navbar-toggler" (click)="toggleNavbar()">
-          <span></span>
-          <span></span>
-          <span></span>
-      </button>
-      <div class="navbar-collapse" [class.collapsed]="isCollapsed">
-          <ul class="navbar-nav">
-              <li class="nav-item">
-                  <a class="nav-link" [routerLink]="['/dashboard']">Accueil</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" [routerLink]="['/entreprises']">Entreprises</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" [routerLink]="['/classification']">Classification</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" [routerLink]="['/nomenclature']">Nomenclature</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" [routerLink]="['/admins']">Admins</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" [routerLink]="['/personnels']">Personnels</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" (click)="logout()">Déconnexion</a>
-              </li>          
-          </ul>
-      </div>
-  </div>
+<nav class="App">
+  <div class="containers">
+    <div class="sidebar">
+        <p class="logo">Page Admin</p>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/dashboard']">
+                    <fa-icon [icon]="faHome" class="sidebar-icon"></fa-icon> Acceuil
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/entreprises']"> 
+                    <fa-icon [icon]="faChartBar" class="sidebar-icon"></fa-icon> Entreprises
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/classification']"> <fa-icon [icon]="faTags" class="sidebar-icon"></fa-icon> Classification</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/nomenclature']"> <fa-icon [icon]="faBook" class="sidebar-icon"></fa-icon>Nomenclature</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/admins']"> <fa-icon [icon]="faUserCircle" class="sidebar-icon"></fa-icon>Admins</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/personnels']"> <fa-icon [icon]="faUsers" class="sidebar-icon"></fa-icon>Personnels</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="logout()"> <fa-icon [icon]="faSignOutAlt" class="sidebar-icon"></fa-icon>Déconnexion</a>
+            </li>          
+        </ul>
+        </div>
+    </div>
+    
 </nav>

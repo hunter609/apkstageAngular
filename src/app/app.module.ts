@@ -18,6 +18,9 @@ import { FilterByDivisionPipe } from './pipes/filter-by-division.pipe';
 import { AdminpageComponent } from './components/admin/adminpage/adminpage.component';
 import { EnregistrerEntrepriseComponent } from './components/personnel/enregistrer-entreprise/enregistrer-entreprise/enregistrer-entreprise.component'; 
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login',component: LoginComponent},
@@ -44,13 +47,16 @@ const routes: Routes = [
     FilterByDivisionPipe,
     AdminpageComponent,
     EnregistrerEntrepriseComponent,
+
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot(routes), 
-    ReactiveFormsModule 
+    ReactiveFormsModule,
+    FontAwesomeModule,
+    BrowserAnimationsModule
   ],
   providers: [ 
     AuthGuard,

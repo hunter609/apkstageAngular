@@ -1,0 +1,144 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+
+$primary-color: #24292e;
+$secondary-color: #6c757d;
+
+  
+.dashboard {
+  margin-left: 210px;
+  margin-top: 50px;
+  padding: 20px;
+  font-family: 'Helvetica Neue', sans-serif;
+
+  .plusInformations {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .info-box {
+    zoom: 95% !important;
+    padding: 20px;
+    border-radius: 8px;
+    width: 500px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.274);
+    transition: transform 0.2s ease;
+    cursor: pointer;
+    margin-top: 0px;
+
+    &:hover {
+      transform: translateY(-4px);
+    }
+
+    h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: $primary-color;
+    }
+
+    p {
+      font-size: 16px;
+      color: $primary-color;
+    }
+
+    &.espace-repartition {
+      margin-right: 20px;
+    }
+  }
+
+  h2 {
+    margin-top: -20px;
+    margin-left: 432px;
+    font-size: 32px;
+    font-style: italic;
+    color: $primary-color;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  p {
+    font-size: 16px;
+    font-weight: bold;
+    color: $primary-color;
+    background-color: #eaeaea;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .diagramme {
+    width: 100% !important;
+  }
+
+  .espace-repartition {
+    margin-bottom: 20px;
+  }
+
+  .diagrammeCirculaire {
+    width: 100% !important;
+  }
+
+  .diagramme-plein-ecran {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+
+    li {
+      margin-bottom: 5px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &::before {
+        content: "\f0da";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        display: inline-block;
+        width: 1.5em;
+        margin-right: 8px;
+      }
+    }
+  }
+
+  // Styles for 3D effect
+  .dashboard.D3 {
+    perspective: 1000px;
+
+    .info-box {
+      transform-style: preserve-3d;
+      transition: transform 0.3s ease;
+      max-width: 150px;
+
+      &:hover {
+        transform: translateY(-4px) rotateX(5deg);
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        transform-origin: top;
+        transform: scaleY(0.95);
+        opacity: 0;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+
+      &:hover::after {
+        transform: scaleY(1);
+        opacity: 1;
+      }
+    }
+  }
+}

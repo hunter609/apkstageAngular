@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+$sidebar-width: 220px;
+$sidebar-background: #333;
+$sidebar-text-color: #fff;
+$sidebar-hover-color: #555;
+$sidebar-active-color: #888;
+$logout-button-padding: 10px 20px;
+$primaryColor: #3f51b5;
+$sidebarWidth: 250px;
+
+// Mixins
+@mixin flexCenter() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.App {
+  display: flex;
+  margin: -8px;
+}
+
+
+.containers-app {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background-color: #f2f2f2;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar {
+  width: $sidebar-width;
+  background-color: $sidebar-background;
+  color: $sidebar-text-color;
+  font-family: 'Open Sans', sans-serif;
+  height: 100%;
+  position: fixed;
+
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #f7f0f0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: pulse 1.5s infinite;
+    margin-left: 35px;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    padding: 10px 20px;
+  }
+
+  li a {
+    color: $sidebar-text-color;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height: 20px;
+  }
+
+  li a:hover,
+  li a:focus {
+    background-color: $sidebar-hover-color;
+   
+  }
+
+  li a.active {
+    background-color: $sidebar-active-color;
+    font-weight: bold;
+
+  }
+
+  .sidebar-icon {
+    margin-right: 10px;
+    cursor: pointer;
+  }
+}
+
+.sidebar-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow-y: auto;
+  padding: 50px;
+  margin-left: 210px;
+}
+
+// Responsive styles
+@media (max-width: 768px) {
+  .App {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 200px;
+  }
+  
+
+  
+}
+
+.date-heure {
+  position: fixed;
+  top: 50px;
+  right: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  text-align: right;
+  padding: 10px;
+  background-color: #f0f0f0;
+}
+

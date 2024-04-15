@@ -1,42 +1,55 @@
 <app-navbar></app-navbar>
-
-<div *ngIf="!loading" class="plusInformations">
-    <p id='titre' class='info-box espace-repartition'>Nombre total d'entreprises : {{ statistiquesAffichees.entreprises }}</p>
-    <p id='titre' class='info-box espace-repartition'>Nombre total de personnes : {{ statistiquesAffichees.totalPersonnes }}</p>
-    <p id='titre' class='info-box espace-repartition'>Nombre maximum de personnes dans une entreprise : {{ statistiquesAffichees.nbPersonnesMax }}</p>
-    <p id='titre' class='info-box espace-repartition'>Nombre minimum de personnes dans une entreprise : {{ statistiquesAffichees.nbPersonnesMin }}</p>
-  
-    <div class='info-box espace-repartition'>
-      <p>Activités les plus courantes :</p>
-      <ul>
-        <li *ngFor="let activite of statistiquesAffichees.activites">
-          {{ activite[0] }}: {{ activite[1] }}
-        </li>
-      </ul>
-    </div>
-  
-    <div class="info-box espace-repartition">
-        <div class="division">
-            <p>Répartition des entreprises par division :</p>
-            <ul>
-              <li *ngFor="let division of statistiquesAffichees.divisions">
-                {{ division[0] }}: {{ division[1] }}
-              </li>
-            </ul>
+<div [@fadeInOut]>
+  <div class="content">
+    <div class="dashboard D3 plusInformations"> 
+      <h2>Statistiques</h2>
+      <div *ngIf="!loading" class="plusInformations">
+        <p id='titre' class='info-box espace-repartition'>Nombre total d'entreprises : {{ statistiquesAffichees.entreprises }}</p>
+        <p id='titre' class='info-box espace-repartition'>Nombre total de personnes : {{ statistiquesAffichees.totalPersonnes }}</p>
+        <p id='titre' class='info-box espace-repartition'>Nombre maximum de personnes dans une entreprise : {{ statistiquesAffichees.nbPersonnesMax }}</p>
+        <p id='titre' class='info-box espace-repartition'>Nombre minimum de personnes dans une entreprise : {{ statistiquesAffichees.nbPersonnesMin }}</p>
+      
+        <div class='info-box espace-repartition'>
+          <p>Activités les plus courantes :</p>
+          <ul>
+            <li *ngFor="let activite of statistiquesAffichees.activites">
+              {{ activite[0] }}: {{ activite[1] }}
+            </li>
+          </ul>
         </div>
-        <div class="section">
-            <p>Répartition des entreprises par section :</p>
-            <ul>
-              <li *ngFor="let section of statistiquesAffichees.sections">
-                {{ section[0] }}: {{ section[1] }}
-              </li>
-            </ul>
+      
+        <div class="info-box espace-repartition">
+            <div class="division">
+                <p>Répartition des entreprises par division :</p>
+                <ul>
+                  <li *ngFor="let division of statistiquesAffichees.divisions">
+                    {{ division[0] }}: {{ division[1] }}
+                  </li>
+                </ul>
+            </div>
         </div>
+        <div class="info-box espace-repartition">
+            <div class="section">
+                <p>Répartition des entreprises par section :</p>
+                <ul>
+                  <li *ngFor="let section of statistiquesAffichees.sections">
+                    {{ section[0] }}: {{ section[1] }}
+                  </li>
+                </ul>
+            </div>
+        </div>
+    
+        <div>
+          <canvas #barChart></canvas>
+          <canvas #pieChart></canvas>
+        </div>
+      </div>
+      
     </div>
-
-    <div>
-      <canvas #barChart></canvas>
-      <canvas #pieChart></canvas>
-    </div>
+    
   </div>
+</div>
+
+
+
   
